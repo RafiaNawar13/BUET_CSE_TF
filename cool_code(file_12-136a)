@@ -1,0 +1,74 @@
+ #include<stdio.h>
+#include<string.h>
+
+
+
+    char ch[100];
+
+//Swap swp;
+
+FILE *fp1,*fp2;
+
+void encryptfile(char  filename[]);
+
+int main()
+{
+char s[1000];
+    encryptfile("cse109final.txt");
+      FILE *  fp2=fopen("cse109final.txt","r");
+      while(fscanf(fp2,"%s",s)!=EOF)
+        printf("%s",s);
+
+
+}
+void encryptfile(char filename[])
+{
+    int i=0,count;
+    char ch1,ch2;
+    fp1=fopen(filename,"r");
+    if(fp1==NULL)
+    {
+        printf("Designated file not found...");
+       // exit(1);
+    }
+
+
+//    while(1)
+//    {
+//        int a=fscanf(fp1,"%c", &swp.ch[i]);
+//        if(a==EOF) break;
+//        i++;
+//    }
+//
+//    count=i;
+//
+//    for(i=0; i<count-1; i+=2)
+//    {
+//        char t = swp.ch[i];
+//        swp.ch[i]=swp.ch[i+1];
+//        swp.ch[i+1]=t;
+int k=0;
+  while((ch1=fgetc(fp1))!=EOF &&(ch2=fgetc(fp1))!=EOF){
+     ch[k++]=ch2;
+
+        ch[k++]=ch1;
+
+
+
+  }
+    fp2=fopen(filename,"w");
+    if(fp2==NULL)
+    {
+        printf("Designated file not found...");
+       // exit(1);
+    }
+
+    for(i=0; i<k; i++)
+    {
+        fprintf(fp2,"%c",ch[i]);
+    }
+
+    fclose(fp1);
+    fclose(fp2);
+}
+
